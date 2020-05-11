@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
 
-	public title: string = 'em-wave-modelling';
+	public title: string = 'EM wave model';
 	private _isDataInitialized: boolean = false;
 
 	get isDataInitialized(): boolean {

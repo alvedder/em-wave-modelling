@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {pi, sin, sqrt} from 'mathjs';
 import {GivenData} from '../../models/given-data.model';
@@ -9,6 +9,9 @@ import {GivenData} from '../../models/given-data.model';
 	styleUrls: ['./plot.component.less']
 })
 export class PlotComponent implements OnInit {
+
+	@Output()
+	public readonly initialized: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	private readonly iterationsTotal: number = 200;
 
@@ -21,8 +24,10 @@ export class PlotComponent implements OnInit {
 	private Ey = (z: number, x: number, t: number) => (this.U(z, t) + this.Teta(z, t)) * sin(pi * x / this.data.l);
 
 	private EyWrapper = (z: number) => {
+		// here the spinner must get turned on
 		let solution = this.Ey(z, this.data.l / 2, this.timeSlider.Value());
 		console.log(solution);
+		// here the spinner must get turned off
 		return solution;
 	};
 
@@ -69,5 +74,9 @@ export class PlotComponent implements OnInit {
 		this.board = JXG.JSXGraph.initBoard('box', {boundingbox: [left, top, right, bottom], axis: true, grid: false});
 		this.timeSlider = this.board.create('slider', [[-left, top/5], [right*0.8, top/5], [0, 0, this.data.T]], {name: 't', snapWidth: 2});
 		this.plot = this.board.create('functiongraph', [this.EyWrapper, 0, this.data.L]);
+	}
+
+	public returnToInit() {
+		this.initialized.emit(false);
 	}
 }

@@ -1,7 +1,13 @@
+<header class="header">
+	<h1 class="title">{{title}}</h1>
+</header>
+
 <main class="root">
 	<init-plot-data *ngIf="isDataInitialized === false"
 					(initialized)="isDataInitialized = $event">
 	</init-plot-data>
-	<plot *ngIf="isDataInitialized === true"></plot>
+	<plot *ngIf="isDataInitialized === true"
+		  (initialized)="isDataInitialized = $event">
+	</plot>
 </main>
 

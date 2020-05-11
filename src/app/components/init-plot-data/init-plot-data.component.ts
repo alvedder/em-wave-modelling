@@ -2,6 +2,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {GivenData} from '../../models/given-data.model';
 import {DataService} from '../../services/data.service';
 
+export const STUB_MODEL: GivenData = {
+	l: 10,
+	L: 10,
+	T: 100,
+	c: 300_000_000,
+	lambda: 1e-3
+}
+
 @Component({
 	selector: 'init-plot-data',
 	templateUrl: './init-plot-data.component.html',
@@ -9,13 +17,7 @@ import {DataService} from '../../services/data.service';
 })
 export class InitPlotDataComponent implements OnInit {
 
-	public model: GivenData = {
-		l: 10,
-		L: 10,
-		T: 100,
-		c: 300_000_000,
-		lambda: 1e-3
-	}
+	public model: GivenData;
 
 	@Output()
 	public readonly initialized: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -24,6 +26,7 @@ export class InitPlotDataComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
+		this.model = STUB_MODEL;
 	}
 
 	public buildPlot(): void {
