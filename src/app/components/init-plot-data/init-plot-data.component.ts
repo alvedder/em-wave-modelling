@@ -11,8 +11,8 @@ export class InitPlotDataComponent implements OnInit {
 
 	public model: GivenData = {
 		l: 10,
-		L: 5,
-		T: 0,
+		L: 10,
+		T: 100,
 		c: 300_000_000,
 		lambda: 1e-3
 	}
