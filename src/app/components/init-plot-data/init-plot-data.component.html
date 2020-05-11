@@ -1,0 +1,23 @@
+<main class="init-plot-data">
+	<label class="init-plot-data__label">l
+		<input class="init-plot-data__input" [(ngModel)]="model.l" type="number" step="0.1">
+	</label>
+
+	<label class="init-plot-data__label">L
+		<input class="init-plot-data__input" [(ngModel)]="model.L" type="number" step="0.1">
+	</label>
+
+	<label class="init-plot-data__label">T
+		<input class="init-plot-data__input" [(ngModel)]="model.T" type="number" step="0.1">
+	</label>
+
+	<label class="init-plot-data__label">&lambda;
+		<input class="init-plot-data__input" [(ngModel)]="model.lambda" type="number" step="0.1">
+	</label>
+
+	<label class="init-plot-data__label">c
+		<input class="init-plot-data__input" [(ngModel)]="model.c" type="number" step="0.1">
+	</label>
+
+	<button class="init-plot-data__button" (click)="buildPlot()">Build plot</button>
+</main>

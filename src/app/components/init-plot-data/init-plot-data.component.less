@@ -1,0 +1,41 @@
+@import "../../../styles.less";
+
+.init-plot-data {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 100px 180px;
+	padding: 30px 100px;
+	transition-duration: @transition-duration;
+	background: @login-form-color;
+	border-radius: 10px;
+	border: solid 1px @color-2;
+
+	&:hover {
+		box-shadow: 0 0 17px 2px @color-2;
+	}
+
+	&__input {
+		.input;
+
+		&:focus {
+			.input-focus;
+		}
+	}
+
+	&__label {
+		.label;
+		padding: 7px 0 0 0;
+		background: transparent;
+	}
+
+	&__button {
+		.button;
+		width: 150px;
+		margin: 30px 0 0 0;
+
+		&:hover {
+			.button-hover;
+		}
+	}
+}

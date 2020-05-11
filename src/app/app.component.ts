@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+	selector: 'root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'em-wave-modelling';
+
+	public title: string = 'em-wave-modelling';
+	private _isDataInitialized: boolean = false;
+
+	get isDataInitialized(): boolean {
+		return this._isDataInitialized;
+	}
+	set isDataInitialized(value: boolean) {
+		this._isDataInitialized = value;
+	}
+
 }
