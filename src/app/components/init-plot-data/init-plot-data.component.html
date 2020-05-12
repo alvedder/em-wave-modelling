@@ -1,23 +1,10 @@
 <div class="init-plot-data">
-	<label class="init-plot-data__label">l
-		<input class="init-plot-data__input" [(ngModel)]="model.l" type="number" step="0.1">
-	</label>
 
-	<label class="init-plot-data__label">L
-		<input class="init-plot-data__input" [(ngModel)]="model.L" type="number" step="0.1">
-	</label>
-
-	<label class="init-plot-data__label">T
-		<input class="init-plot-data__input" [(ngModel)]="model.T" type="number" step="0.1">
-	</label>
-
-	<label class="init-plot-data__label">&lambda;
-		<input class="init-plot-data__input" [(ngModel)]="model.lambda" type="number" step="0.1">
-	</label>
-
-	<label class="init-plot-data__label">c
-		<input class="init-plot-data__input" [(ngModel)]="model.c" type="number" step="0.1">
-	</label>
+	<number-input [(value)]="model.l" [step]="1" [text]="'l (m)'"></number-input>
+	<number-input [(value)]="model.L" [step]="1" [text]="'L (m)'"></number-input>
+	<number-input [(value)]="model.T" [step]="1" [text]="'T (s)'"></number-input>
+	<number-input [(value)]="model.lambda" [step]="0.01" [text]="'&lambda; (m)'"></number-input>
+	<number-input [(value)]="model.c" [step]="1e6" [text]="'c (m/s)'"></number-input>
 
 	<button class="init-plot-data__button" (click)="buildPlot()">Build plot</button>
 </div>

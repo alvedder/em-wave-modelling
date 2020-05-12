@@ -23,18 +23,9 @@ export class PlotComponent implements OnInit {
 
 	private Ey = (z: number, x: number, t: number) => (this.U(z, t) + this.Teta(z, t)) * sin(pi * x / this.data.l);
 
-	private EyWrapper = (z: number) => {
-		// here the spinner must get turned on
-		let solution = this.Ey(z, this.data.l / 2, this.timeSlider.Value());
-		console.log(solution);
-		// here the spinner must get turned off
-		return solution;
-	};
-
-
 	private U = (z: number, t: number) => {
-		const Tn = (t: number, n: number) => (2 / ((pi * n) * (this.gammaN(n)**2 - this.omega()**2))) *
-			((this.omega()**2 - this.omegaTop()**2) * sin(this.omega() * t) - (this.omega() * (this.omegaN(n)**2) * sin(this.gammaN(n) * t)));
+		const Tn = (t: number, n: number) => (2 / ((pi * n) * (this.gammaN(n) ** 2 - this.omega() ** 2))) *
+			((this.omega() ** 2 - this.omegaTop() ** 2) * sin(this.omega() * t) - (this.omega() * (this.omegaN(n) ** 2) * sin(this.gammaN(n) * t)));
 
 		const Yn = (z: number, n: number) => sin(pi * n * z / this.data.L);
 
@@ -57,6 +48,14 @@ export class PlotComponent implements OnInit {
 
 	private gammaN = (n: number) => sqrt(this.omegaTop() + this.omegaN(n));
 
+	private findEy = (z: number) => {
+		// TODO here the spinner must get turned on
+		let solution = this.Ey(z, this.data.l / 2, this.timeSlider.Value());
+		// console.log(solution);
+		// TODO here the spinner must get turned off
+		return solution;
+	};
+
 	constructor(private dataService: DataService) {
 	}
 
@@ -71,9 +70,16 @@ export class PlotComponent implements OnInit {
 		const top = 5e7;
 		const bottom = -top;
 		// @ts-ignore
-		this.board = JXG.JSXGraph.initBoard('box', {boundingbox: [left, top, right, bottom], axis: true, grid: false});
-		this.timeSlider = this.board.create('slider', [[-left, top/5], [right*0.8, top/5], [0, 0, this.data.T]], {name: 't', snapWidth: 2});
-		this.plot = this.board.create('functiongraph', [this.EyWrapper, 0, this.data.L]);
+		this.board = JXG.JSXGraph.initBoard('box', {
+			boundingbox: [left, top, right, bottom],
+			axis: true,
+			grid: false
+		});
+		this.timeSlider = this.board.create('slider', [[-left, top / 5], [right * 0.8, top / 5], [0, 0, this.data.T]], {
+			name: 't',
+			snapWidth: 1,
+		});
+		this.plot = this.board.create('functiongraph', [this.findEy, 0, this.data.L]);
 	}
 
 	public returnToInit() {

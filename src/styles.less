@@ -30,6 +30,11 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: 0;
 }
 
+/* reset of the license text on the graph */
+#box_licenseText {
+	display: none;
+}
+
 .label {
 	width: fit-content;
 	display: flex;
@@ -42,7 +47,7 @@ input[type=number]::-webkit-outer-spin-button {
 	border: solid 3px @color-2;
 	padding-left: 8px;
 	transition-duration: @transition-duration;
-	width: 220px;
+	width: 180px;
 	height: 33px;
 }
 
@@ -64,4 +69,8 @@ input[type=number]::-webkit-outer-spin-button {
 	outline: none;
 	background: @color-2;
 	color: @color-1;
+}
+
+button:focus {
+	outline: none;
 }
