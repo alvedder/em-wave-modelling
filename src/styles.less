@@ -3,8 +3,9 @@
 
 @color-1: #F0EFFF;
 @color-2: lightsteelblue;
-@login-form-color: RGBA(215, 210, 255, 0.7);
+@init-form-color: RGBA(215, 210, 255, 0.7);
 @main-text-color: darkslateblue;
+@plot-color: RGBA(215, 210, 255, 0.2);
 @error-color: RGBA(255, 82, 80, 0.4);
 @error-text-color: RGB(255, 0, 57);
 @transition-duration: 0.3s;
@@ -45,6 +46,7 @@ input[type=number]::-webkit-outer-spin-button {
 .input {
 	border-radius: 8px;
 	border: solid 3px @color-2;
+	background: @color-1;
 	padding-left: 8px;
 	transition-duration: @transition-duration;
 	width: 180px;
@@ -58,6 +60,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .button {
+	background: @color-1;
 	cursor: pointer;
 	border-radius: 8px;
 	border: solid 3px @color-2;
