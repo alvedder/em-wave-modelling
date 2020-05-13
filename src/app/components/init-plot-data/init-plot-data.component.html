@@ -1,10 +1,21 @@
 <div class="init-plot-data">
-
-	<number-input [(value)]="model.l" [step]="1" [text]="'l (m)'"></number-input>
-	<number-input [(value)]="model.L" [step]="1" [text]="'L (m)'"></number-input>
-	<number-input [(value)]="model.T" [step]="1" [text]="'T (s)'"></number-input>
-	<number-input [(value)]="model.lambda" [step]="0.01" [text]="'&lambda; (m)'"></number-input>
-	<number-input [(value)]="model.c" [step]="1e6" [text]="'c (m/s)'"></number-input>
+	<div class="init-plot-data-wrapper">
+		<div class="init-plot-data-wrapper__triple-block">
+			<number-input [value]="model.l" (valueChange)="model.l = $event" [step]="1"
+						  [text]="'l (mkm)'"></number-input>
+			<number-input [value]="model.L" (valueChange)="model.L = $event" [step]="1"
+						  [text]="'L (mkm)'"></number-input>
+			<number-input [value]="model.T" (valueChange)="model.T = $event" [step]="1" [text]="'T (s)'"></number-input>
+		</div>
+		<div class="init-plot-data-wrapper__triple-block">
+			<number-input [value]="model.lambda" (valueChange)="model.lambda = $event" [step]="1"
+						  [text]="'&lambda; (mkm)'"></number-input>
+			<number-input [value]="model.c" (valueChange)="model.c = $event" [step]="1e12"
+						  [text]="'c (mkm/s)'"></number-input>
+			<number-input [value]="model.iterationsTotal" (valueChange)="model.iterationsTotal = $event" [step]="10"
+						  [text]="'iterations total'"></number-input>
+		</div>
+	</div>
 
 	<button class="init-plot-data__button" (click)="buildPlot()">Build plot</button>
 </div>

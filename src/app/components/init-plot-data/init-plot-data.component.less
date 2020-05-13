@@ -4,7 +4,7 @@
 	display: flex;
 	flex-flow: column wrap;
 	align-items: center;
-	padding: 30px 100px;
+	padding: 30px 40px;
 	transition-duration: @transition-duration;
 	background: @init-form-color;
 	border-radius: 10px;
@@ -14,18 +14,14 @@
 		box-shadow: 0 0 17px 2px @color-2;
 	}
 
-	&__input {
-		.input;
+	&-wrapper {
+		display: flex;
 
-		&:focus {
-			.input-focus;
+		&__triple-block {
+			display: flex;
+			flex-direction: column;
+			margin: 40px;
 		}
-	}
-
-	&__label {
-		.label;
-		padding: 7px 0 0 0;
-		background: transparent;
 	}
 
 	&__button {

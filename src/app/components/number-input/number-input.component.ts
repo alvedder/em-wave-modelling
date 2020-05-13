@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class NumberInputComponent implements OnInit {
 
 	@Output()
-	private valueChange: EventEmitter<number> = new EventEmitter<number>();
+	public valueChange: EventEmitter<number> = new EventEmitter<number>();
 
 	@Input()
 	public step: number;

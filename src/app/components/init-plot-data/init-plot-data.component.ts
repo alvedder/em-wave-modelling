@@ -4,10 +4,11 @@ import {DataService} from '../../services/data.service';
 
 export const STUB_MODEL: GivenData = {
 	l: 10,
-	L: 10,
-	T: 100,
-	c: 300_000_000,
-	lambda: 1e-3
+	L: 4,
+	T: 0.1,
+	c: 3e14,
+	lambda: 2,
+	iterationsTotal: 200
 }
 
 @Component({

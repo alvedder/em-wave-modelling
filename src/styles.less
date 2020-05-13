@@ -1,5 +1,4 @@
-/*@import "app/components/init-plot-data/init-plot-data.component.less";
-@import "app/components/plot/plot.component.less";*/
+// COLORS
 
 @color-1: #F0EFFF;
 @color-2: lightsteelblue;
@@ -9,6 +8,8 @@
 @error-color: RGBA(255, 82, 80, 0.4);
 @error-text-color: RGB(255, 0, 57);
 @transition-duration: 0.3s;
+
+// RESETTING DEFAULT STYLES
 
 * {
 	margin: 0;
@@ -31,10 +32,16 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: 0;
 }
 
+button:focus {
+	outline: none;
+}
+
 /* reset of the license text on the graph */
 #box_licenseText {
 	display: none;
 }
+
+// COMMON FORM
 
 .label {
 	width: fit-content;
@@ -72,8 +79,4 @@ input[type=number]::-webkit-outer-spin-button {
 	outline: none;
 	background: @color-2;
 	color: @color-1;
-}
-
-button:focus {
-	outline: none;
 }

@@ -2,7 +2,7 @@
 	{{this.text}}
 	<div class="number-input__wrapper">
 		<button (click)="onDecrease()" class="number-input__decrease-button">-</button>
-		<input class="number-input__input" [(ngModel)]="this.value" type="number" [step]="this.step"/>
+		<input class="number-input__input" [(ngModel)]="this.value" (ngModelChange)="valueChange.emit($event)" type="number" [step]="this.step"/>
 		<button (click)="onIncrease()" class="number-input__increase-button">+</button>
 	</div>
 </div>
