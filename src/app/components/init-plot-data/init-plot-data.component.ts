@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {GivenData} from '../../models/given-data.model';
 import {DataService} from '../../services/data.service';
 
-export const STUB_MODEL: GivenData = {
+export const START_MODEL: GivenData = {
 	l: 10,
 	L: 4,
 	T: 0.1,
@@ -27,7 +27,7 @@ export class InitPlotDataComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		this.model = STUB_MODEL;
+		this.model = START_MODEL;
 	}
 
 	public buildPlot(): void {
