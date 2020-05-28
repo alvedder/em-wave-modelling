@@ -7,7 +7,7 @@ export const START_MODEL: GivenData = {
 	L: 4,
 	c: 3e14,
 	lambda: 2,
-	T: 0,
+	T: 6.67e-15,
 	iterationsTotal: 200
 }
 
@@ -28,7 +28,6 @@ export class InitPlotDataComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.model = START_MODEL;
-		this.model.T = START_MODEL.lambda / START_MODEL.c;
 	}
 
 	public buildPlot(): void {

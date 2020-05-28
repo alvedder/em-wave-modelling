@@ -67,9 +67,10 @@ export class PlotComponent implements OnInit {
 			axis: true,
 			grid: false
 		});
-		this.timeSlider = this.board.create('slider', [[-left, -0.6*top], [0.8*right, -0.6*top], [0, 0, this.data.T]], {
+		this.timeSlider = this.board.create('slider', [[-0.5*left, -0.6*top], [0.62*right, -0.6*top], [0, 0, this.data.T]], {
 			name: 't',
 			snapWidth: this.data.T / 20,
+			precision: 16
 		});
 		this.plot = this.board.create('functiongraph', [this.findEy, 0, this.data.L]);
 		this.leftBorder = this.board.create('line', [[0, 0], [0, 1]], {strokeColor: 'red'})
