@@ -25,34 +25,28 @@ export class PlotComponent implements OnInit {
 
 	private U = (z: number, t: number) => {
 		let series: number = 0;
-
 		for (let n = 1; n <= this.data.iterationsTotal; ++n) {
 			series += this.Tn(t, n) * this.Yn(z, n);
 		}
-
 		return series;
 	};
 
-	private Tn = (t: number, n: number) => (2 / ((pi * n) * (this.gammaN(n) ** 2 - this.omega() ** 2))) *
-		((this.omega() ** 2 - this.omegaTop() ** 2) * sin(this.omega() * t) - (this.omega() * (this.omegaN(n) ** 2) * sin(this.gammaN(n) * t)));
+	private Tn = (t: number, n: number) => (2 / ((pi * n) * ((this.gammaN(n) ** 2) - (this.omega() ** 2)))) *
+		(((this.omega() ** 2) - (this.omegaTop() ** 2)) * sin(this.omega() * t) - (this.omega() * (this.omegaN(n) ** 2) * sin(this.gammaN(n) * t)) / this.gammaN(n));
 
 	private Yn = (z: number, n: number) => sin(pi * n * z / this.data.L);
 
-	private Teta = (z: number, t: number) => sin(this.omega() * t) * (this.data.L - z) / z;
+	private Teta = (z: number, t: number) => sin(this.omega() * t) * (this.data.L - z) / this.data.L;
 
-	private omega = () => 2 * pi * this.data.c / this.data.lambda;
+	private omega = () => (2 * pi * this.data.c) / this.data.lambda;
 
-	private omegaN = (n: number) => pi * this.data.c * n / this.data.L;
+	private omegaN = (n: number) => (pi * this.data.c * n) / this.data.L;
 
-	private omegaTop = () => pi * this.data.c / this.data.l;
+	private omegaTop = () => (pi * this.data.c) / this.data.l;
 
 	private gammaN = (n: number) => sqrt(this.omegaTop()**2 + this.omegaN(n)**2);
 
-	private findEy = (z: number) => {
-		let solution = this.Ey(z, this.data.l / 2, this.timeSlider.Value());
-		// console.log(solution);
-		return solution;
-	};
+	private findEy = (z: number) => this.Ey(z, this.data.l / 2, this.timeSlider.Value());
 
 	constructor(private dataService: DataService) {
 	}
@@ -65,7 +59,7 @@ export class PlotComponent implements OnInit {
 	private initializeGraph() {
 		const left = -this.data.L / 8;
 		const right = 1.1 * this.data.L;
-		const top = 5e16;
+		const top = 3;
 		const bottom = -top;
 		// @ts-ignore
 		this.board = JXG.JSXGraph.initBoard('box', {

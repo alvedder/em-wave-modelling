@@ -5,7 +5,7 @@
 						  [text]="'l (mkm)'"></number-input>
 			<number-input [value]="model.L" (valueChange)="model.L = $event" [step]="1"
 						  [text]="'L (mkm)'"></number-input>
-			<number-input [value]="model.T" (valueChange)="model.T = $event" [step]="1" [text]="'T (s)'"></number-input>
+			<number-input [value]="model.T" (valueChange)="model.T = $event" [step]="1e-15" [text]="'T (s)'"></number-input>
 		</div>
 		<div class="init-plot-data-wrapper__triple-block">
 			<number-input [value]="model.lambda" (valueChange)="model.lambda = $event" [step]="1"

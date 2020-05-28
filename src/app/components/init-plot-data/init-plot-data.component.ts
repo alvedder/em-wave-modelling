@@ -5,9 +5,9 @@ import {DataService} from '../../services/data.service';
 export const START_MODEL: GivenData = {
 	l: 10,
 	L: 4,
-	T: 0.1,
 	c: 3e14,
 	lambda: 2,
+	T: 0,
 	iterationsTotal: 200
 }
 
@@ -28,10 +28,10 @@ export class InitPlotDataComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.model = START_MODEL;
+		this.model.T = START_MODEL.lambda / START_MODEL.c;
 	}
 
 	public buildPlot(): void {
-		// validate data
 		this.dataService.model = this.model;
 		this.initialized.emit(true);
 	}
