@@ -4,5 +4,5 @@ export interface GivenData {
 	T: number;
 	lambda: number;
 	c: number;
-	iterationsTotal;
+	epsilon: number;
 }

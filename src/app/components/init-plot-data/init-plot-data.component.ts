@@ -8,7 +8,7 @@ export const START_MODEL: GivenData = {
 	c: 3e14,
 	lambda: 2,
 	T: 6.67e-15,
-	iterationsTotal: 200
+	epsilon: 1e-4
 }
 
 @Component({

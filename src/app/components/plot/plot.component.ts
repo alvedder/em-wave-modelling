@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService} from '../../services/data.service';
-import {pi, sin, sqrt} from 'mathjs';
+import {pi, sin, sqrt, max} from 'mathjs';
 import {GivenData} from '../../models/given-data.model';
 
 @Component({
@@ -21,12 +21,20 @@ export class PlotComponent implements OnInit {
 	public leftBorder;
 	public rightBorder;
 
-	private Ey = (z: number, x: number, t: number) => (this.U(z, t) + this.Teta(z, t)) * sin(pi * x / this.data.l);
+	// TODO fix a bug: N1 and N2 is too huge: more than 1e34 when Epsilon is 0.0001
+	// I guess the root cause is in the error estimate
+	private findIterationNum = () => {
+		let N1 = Math.ceil(((this.omega() ** 2 - this.omegaTop() ** 2) * this.data.L ** 2) / (this.data.epsilon * (pi ** 3) * this.data.c ** 2) - 1);
+		let N2 = Math.ceil(((2 * this.omega() * this.data.c * (this.data.L ** 2)) / this.data.epsilon) - 1);
+		return max(N1, N2);
+	};
 
-	private U = (z: number, t: number) => {
+	private Ey = (z: number, x: number, t: number, n: number) => (this.U(z, t, n) + this.Teta(z, t)) * sin(pi * x / this.data.l);
+
+	private U = (z: number, t: number, n: number) => {
 		let series: number = 0;
-		for (let n = 1; n <= this.data.iterationsTotal; ++n) {
-			series += this.Tn(t, n) * this.Yn(z, n);
+		for (let i = 1; i <= n; ++i) {
+			series += this.Tn(t, i) * this.Yn(z, i);
 		}
 		return series;
 	};
@@ -44,9 +52,9 @@ export class PlotComponent implements OnInit {
 
 	private omegaTop = () => (pi * this.data.c) / this.data.l;
 
-	private gammaN = (n: number) => sqrt(this.omegaTop()**2 + this.omegaN(n)**2);
+	private gammaN = (n: number) => sqrt(this.omegaTop() ** 2 + this.omegaN(n) ** 2);
 
-	private findEy = (z: number) => this.Ey(z, this.data.l / 2, this.timeSlider.Value());
+	private findEy = (z: number) => this.Ey(z, this.data.l / 2, this.timeSlider.Value(), this.findIterationNum());
 
 	constructor(private dataService: DataService) {
 	}
@@ -67,13 +75,13 @@ export class PlotComponent implements OnInit {
 			axis: true,
 			grid: false
 		});
-		this.timeSlider = this.board.create('slider', [[-0.5*left, -0.6*top], [0.62*right, -0.6*top], [0, 0, this.data.T]], {
+		this.timeSlider = this.board.create('slider', [[-0.5 * left, -0.6 * top], [0.62 * right, -0.6 * top], [0, 0, this.data.T]], {
 			name: 't',
 			snapWidth: this.data.T / 20,
 			precision: 16
 		});
 		this.plot = this.board.create('functiongraph', [this.findEy, 0, this.data.L]);
-		this.leftBorder = this.board.create('line', [[0, 0], [0, 1]], {strokeColor: 'red'})
+		this.leftBorder = this.board.create('line', [[0, 0], [0, 1]], {strokeColor: 'red'});
 		this.rightBorder = this.board.create('line', [[this.data.L, 0], [this.data.L, 1]], {strokeColor: 'red'});
 	}
 
